@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -13,9 +14,8 @@ public class authTestYM {
     private String password = "Kukish";
     //===========================
     private String url = "https://market.yandex.ru/";
-    private By btnCloseAdv = By.xpath("//div[@class='_2Mdur']" +
-            "//div[@class='cia-cs']" +
-            "//button[@class='_1KpjX _3lvec _38a54']");
+    private By btnCloseAdv = By.xpath(
+            "//button[@class='_1KpjX _3lvec _1fjSr']");
     private By btnEnter = By.xpath("//div[@id='USER_MENU_ANCHOR']" +
             "//div[@class='cia-vs cia-cs']" +
                     "//descendant::a");
@@ -26,15 +26,24 @@ public class authTestYM {
     private By inputPass = By.xpath(
             "//div[@class='Field-inputWrapper']" +
             "//input[@id='passp-field-passwd']");
+    private By popAp = By.xpath("//div[@class='_2no4A _2-a6m']");
 
     @Test
     public void authTestYM() throws InterruptedException {
 
         WebDriver driver = new ChromeDriver();
 
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.get(url);
-        driver.findElement(btnCloseAdv).click();
+
+        boolean pp = driver.findElements(popAp).isEmpty();
+
+        try {
+            driver.findElement(btnCloseAdv).click();
+        } catch (NoSuchElementException e){
+            System.out.println("Element pp not found");
+        }
+
         driver.findElement(btnEnter).click();
         driver.findElement(btnEnterYaId).click();
         sleep(2000);
@@ -45,7 +54,9 @@ public class authTestYM {
         driver.findElement(inputPass).sendKeys(password);
         sleep(1000);
         driver.findElement(btnEnterYaId).click();
+
     }
+
 
 
 }
