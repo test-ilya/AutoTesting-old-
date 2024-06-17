@@ -1,2 +1,2 @@
 # studyAutoTesting
-test-case and auto-test(Selenium/RestAssured/Java)
+auto-test(Selenium/RestAssured/Java or Playwright/TypeScript)
