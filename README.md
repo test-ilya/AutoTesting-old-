@@ -1,2 +1,2 @@
-# studyAutoTesting
-auto-test(Selenium/RestAssured/Java or Playwright/TypeScript)
+# Auto Testing Project Demo
+Studying to write autotests with Playwright/TypeScript
